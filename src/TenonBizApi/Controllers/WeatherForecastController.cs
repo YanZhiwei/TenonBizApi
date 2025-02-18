@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
+using Tenon.AspNetCore.Controllers;
 
 namespace TenonBizApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class WeatherForecastController : ControllerBase
+public class WeatherForecastController : AbstractController
 {
     private static readonly string[] Summaries = new[]
     {

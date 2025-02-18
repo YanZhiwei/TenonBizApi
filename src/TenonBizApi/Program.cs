@@ -1,4 +1,7 @@
 
+using Tenon.AspNetCore.OpenApi.Extensions;
+using TenonBizApi.Extensions;
+
 namespace TenonBizApi;
 
 public class Program
@@ -13,7 +16,7 @@ public class Program
         builder.Services.AddControllers();
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
-
+        builder.Services.AddWebApiCoreFeatures(builder.Configuration);
         var app = builder.Build();
 
         app.MapDefaultEndpoints();
@@ -21,11 +24,12 @@ public class Program
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
-            app.MapOpenApi();
+            app.UseScalarOpenApi();
         }
 
         app.UseHttpsRedirection();
-
+        app.UseRouting();
+        app.UseAuthentication();
         app.UseAuthorization();
 
 
